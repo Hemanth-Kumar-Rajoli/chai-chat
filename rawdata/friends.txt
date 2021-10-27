@@ -1,0 +1,23 @@
+{
+    "friends":["jayanth01@gmail.com"],
+    "friends":["balajijf5@gmail.com", "hemanthkumarrajoli@gmail.com"],
+    "friends":["jayanth01@gmail.com", "hemanthkumarrajoli@gmail.com"]
+    "friends":["jayanth01@gmail.com","akhila21@gmail.com"]
+    "friends":["jayanth01@gmail.com"]
+    "friends":["jayanth01@gmail.com@gmail.com","balajijf5@gmail.com"]
+    "friends":["pavi157@gmail.com","hemanthkumarrajoli@gmail.com"]
+    "friends":["hemanthkumarrajoli@gmail.com"]
+    "friends":["pavi157@gmail.com", "hemanthkumarrajoli@gmail.com","jayanth01@gmail.com"]
+    "friends":["jayanth01@gmail.com@gmail.com","hemanthkumarrajoli@gmail.com","sri.ni.di.18@gmail.com"]
+    "friends":["jayanth01@gmail.com@gmail.com","pavi157@gmail.com","ultimatekarthik19@gmail.com"]
+    "friends":["jayanth01@gmail.com@gmail.com","pavi157@gmail.com","hemanthkumarrajoli@gmail.com"]
+    "friends":["balajijf5@gmail.com","ultimatekarthik19@gmail.com"]
+    "friends":["jayanth01@gmail.com@gmail.com","rishi184@gmail.com"]
+    "friends":["saikumar@gmail.com"]
+    "friends":["saikumar@gmail.com"]
+    "friends":["sri.ni.di.18@gmail.com","hemanthkumarrajoli@gmail.com","ultimatekarthik19@gmail.com"]
+    "friends":["eslavatbhumi09@gmail.com","pavi157@gmail.com"]
+    "friends":["jayanth01@gmail.com@gmail.com","ultimatekarthik19@gmail.com"]
+    "friends":["jayanth01@gmail.com@gmail.com", "hemanthkumarrajoli@gmail.com", "sri.ni.di.18@gmail.com"]
+
+}

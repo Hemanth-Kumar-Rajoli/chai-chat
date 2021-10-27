@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <title>chat-room</title>
+</head>
+<body>
+    <div id="present-user" data-userId="<%= user.id %>">
+        <section id="top-section">
+            <h3 class="chat-room">chat room</h3>
+            <input type="text" placeholder="search globally" class="search-global" >
+            <div class="urls">
+                <span id="logOut" style="cursor: pointer;">log-out</span>
+                <span id="aboutMe" style="cursor: pointer;"><%= user.name %></span>
+            </div>
+        </section>
+        <div id="serach-friends"></div>
+        <div class="row">
+            <section id="friends-section">
+                <% for(let i=0;i<user.friends.length;i++){ const wid=user.friends[i].id.id;const name=user.friends[i].id.name%>
+                <div class="row friend-chat" style="height: 40px; padding-top: 5px; cursor: pointer;" data-wid="<%= wid %>" data-wname="<%= name %>">
+                    <!-- <% console.log(user.friends[i].id) %>  -->
+                    <img src="../imgs/<%= user.friends[i].id.photo %>" alt="<%= name %> " data-wid="<%= wid %>" data-wname="<%= name %>">
+                    <div style="align-self: center; margin-left:auto;margin-right:auto;">
+                        <span data-wid="<%= wid %>" data-wname="<%= name %>"><%= user.friends[i].id.name %> </span>
+                    </div>
+                </div>
+                <% } %> 
+            </section>
+            <section id="message-section-hider">
+                <div style="text-align: center; height: 40%;padding-top: 50%;">hello user<br><div>pls go and select your friend to start chat</div></div>
+            </section>
+            <section id="message-section" style="display: none;">
+
+                <section id="friend-name-section">
+                    <h4 id="your-friend">your-friend</h4>
+                   <a href="#">more</a>
+                </section>
+                <a id="get-more" style="text-align: center; display: block; cursor: pointer;">load more</a>
+                <section id="main-message-section">
+
+                </section>
+                <section id="message-section-footer">
+                    <input type="text" id="input-message-placeholder">
+                    <button id="send-input-message">send</button>
+                </section>
+                <div id="message-box" style="padding-bottom: 30px;" ></div>
+            </section>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
+<script src="../main.js"></script>
+<script>
+
+</script>
+</html>

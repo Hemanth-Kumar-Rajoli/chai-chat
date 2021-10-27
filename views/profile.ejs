@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/profile.css">
+</head>
+<body>
+   <div class="row make-border">
+       <section class="details">
+            <div>
+                <h3>Name</h3>
+                <input type="text" value="<%= user.name %>">
+            </div>
+            <div>
+                <h3>email</h3>
+                <input type="email" value="<%= user.email%>">
+            </div>
+            <div>
+                <h3>Date of Birth</h3>
+                <% let dob=new Date(user.DateOfBirth)
+                    let date = dob.getDate();
+                    if(date<10)
+                        date="0"+date
+                    let month = (dob.getMonth()+1);
+                    if(month<10)
+                        month="0"+month
+                    const year = dob.getFullYear();
+                 %> 
+                <input type="date" placeholder="dd-mm-yyyy" value="<%= ""+year+"-"+month+"-"+date %>">
+            </div>
+            <div>
+                <h3>About you</h3>
+                <textarea name="about-you" id="about-you" cols="30" rows="6"><%= user.aboutMe %> </textarea>
+            </div>
+       </section>
+       <section class="image-and-submit">
+           <section>
+               <div>
+                   <img src="<%= user.photo %>" alt="Not found">
+               </div>
+               <div>
+                   <div>
+                        <label for="photo">Edit profile pic</label>
+                        <input type="file" accept="image/*" name="photo" id="photo" style="display: block; margin-right: auto; margin-left: auto;">
+                   </div>
+                   <br><br>
+                   <div class="row">
+                       <button id="editAndSave">edit and save</button>
+                       <button id="continueWithoutSave">continue without save</button>
+                   </div>
+               </div>
+           </section>
+       </section>
+   </div> 
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script src="../profile.js"></script>
+</body>
+</html>

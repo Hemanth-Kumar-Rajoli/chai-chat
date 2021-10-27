@@ -1,0 +1,123 @@
+body{
+    padding: 4% 4% 0 4%;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgb(252, 240, 240);
+}
+#top-section{
+    /* border:1px solid red; */
+    background-color: #CB9CF2;
+    padding: 5px;
+    height: 30px;
+    display: flex;
+}
+.chat-room{
+    width: 15%;
+    align-self: center;
+    padding-right: 10px;
+}
+.search-global{
+    width: 60%;
+    margin: auto;
+}
+#serach-friends{
+    width: 53%;
+    position: absolute;
+    margin-left: 15%;
+    margin-right: 20%;
+    top: 14%;
+    /* height: 50px; */
+    max-height: 200px;
+    overflow-y: scroll;
+    background-color: gray;
+}
+img.searched-user{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+@media screen and (min-width:720px) {
+    #serach-friends{
+        top:16%
+    }
+}
+.urls{
+    font-size: 18px;
+    width: 25%;
+    padding-left:auto;
+    text-align: end;
+}
+a{
+    text-decoration: none;
+    padding: 10px;
+    align-self: center;
+}
+/* friends collection */
+.row{
+    display: flex;
+}
+#friends-section{
+    padding: 5px;
+    margin-top: 10px;
+    width: 30%;
+    height: 30rem;
+    /* border: 1px solid red; */
+    background-color: rgb(217, 236, 208);
+    /* background-color: #616283; */
+    overflow-y: scroll;
+}
+#friends-section>div:hover{
+    color: rgb(71, 69, 69);
+}
+img{
+    border-radius: 50px;
+}
+#friends-section::-webkit-scrollbar,#message-section::-webkit-scrollbar,#serach-friends::-webkit-scrollbar{
+    width: 10px;
+}
+#friends-section::-webkit-scrollbar-thumb,#message-section::-webkit-scrollbar-thumb,#serach-friends::-webkit-scrollbar-thumb{
+    background-color: rgb(171, 179, 177);
+    border-radius: 50px;
+}
+#friends-section::-webkit-scrollbar-thumb:hover,#message-section::-webkit-scrollbar-thumb:hover,#serach-friends::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(216, 221, 220);
+
+}
+#message-section,#message-section-hider{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 70%;
+    height: 30rem;
+    /* border: 1px solid red; */
+    background-color: rgb(228, 217, 228);
+    overflow-y:scroll;
+}
+#friend-name-section{
+    width: 90%;
+    height: 30px;
+    margin:10px auto;
+    border-radius: 5px;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 10px;
+    background-color: white;
+}
+h4#your-friend{
+    margin: 3px 0 0 5px;
+    align-self: center;
+}
+#message-section-footer{
+    margin: auto;
+    position: fixed;
+    bottom: 20px;
+    width: 60%;
+}
+#message-section-footer>input{
+    min-width:70%;
+    width: 85%;
+    height: 20px;
+    border-radius: 7px;
+}
+
+

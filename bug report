@@ -1,0 +1,2 @@
+1.userSchema.js bug in line 47
+2.while using filters age is not calculated by not passing DateOfBirth as one of fields

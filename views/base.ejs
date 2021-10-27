@@ -1,0 +1,56 @@
+<%- include('header') %> 
+<body>
+    <div class="outer-body">
+        <div class="form">
+            <h3><%= file %> </h3>
+            <div>
+                <div class="div-element-email">
+                    <input type="text" name="email" id="email" required>
+                    <label for="email">email</label>
+                    <div class="for-after"></div>
+                </div>
+                <% if(file==='log in' ||file==='sign up'){ %>
+                    <div class="div-element-password">
+                        <input type="password" name="password" id="password" required>
+                        <label for="password" id="">password</label>
+                        <div class="for-after"></div>
+                    </div>
+                <% } %> 
+                <% if(file==='sign up'){ %>
+                    <div class="div-element-ConformPassword">
+                        <input type="password" name="password" id="conform-password" required>
+                        <label for="conform-password" id="">conform password</label>
+                        <div class="for-after"></div>
+                    </div>
+                <% } %> 
+                <div>
+                    <% if(file==='log in' ||file==='sign up'){ %>
+                        <button name="<%= file %>" id="entrence"><%= file %></button>
+                    <% } else { %>
+                            <button name="forgot password" id="entrence">submit</button>
+                            <div>
+                                <a href="/login">log-in</a>
+                                <span>-</span>
+                                <a href="/signup">New to here</a>
+                            </div>
+                    <% } %> 
+
+                    <% if(file==='log in'){ %>
+                        <div id='login-message' style="color: red;"></div>
+                        <div>
+                            <a href="/forgot-password">forgot-password?</a>
+                            <span>-</span>
+                            <a href="/signup">New to here</a>
+                        </div>
+                    <% } %> 
+                    <% if(file==='sign up'){ %>
+                        <div>
+                            <a href="/login">Already had an account?</a>
+                        </div>
+                    <% } %> 
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include('footer') %> 

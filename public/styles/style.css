@@ -1,0 +1,92 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.form{
+    padding: 20px 0px;
+}
+.outer-body{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #cccccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    outline: none;
+    width:40%;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(56, 111, 230);
+    transition: border 0.5s ease-in-out;
+}
+button:hover{
+    border: 2px solid rgb(82, 102, 145);
+    color:rgb(56, 111, 230) ;
+}
+.div-element-password{
+    position: relative;
+    bottom: 15px;
+    height: 50px;
+}
+.form{
+    align-items: center;
+    width: 40%;
+    height: fit-content;
+    background-color: rgb(240, 242, 243);
+    text-align: center;
+}
+input{
+    width: 80%;
+    /* height: 30px; */
+    padding-top: 20px;
+    text-align: bottom;
+    outline: none;
+    border: none;
+}
+
+.for-after{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    top: -22px;
+    width: 80%;
+    margin: auto;
+}
+.for-after::after{
+    content: "";
+    display: inline-block;
+    width: 100%;
+    border-bottom: 2px solid rgb(101, 172, 230);
+    height: 2px;
+    width: 100;
+    position: relative;
+    bottom: 9px;
+    left: 100%;
+    transition: left 0.4s ease-in-out;
+
+}
+input:focus ~ div::after,input:valid ~ div::after{
+    left: 0;
+    transition: left 0.4s ease-in-out;
+}
+label{ 
+    display:inline-block;
+    width: 80%;
+    text-align: start;
+    position: relative;
+    bottom: 20px;
+    /* font-size: 19px; */
+}
+input:focus+label{
+    bottom: 40px;
+    transition: bottom 0.2s ease-in-out;
+}
+input:valid+label{
+    bottom: 40px;
+}
