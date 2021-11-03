@@ -90,3 +90,8 @@ input:focus+label{
 input:valid+label{
     bottom: 40px;
 }
+@media screen and (max-width:420px) {
+    .form{
+        width: 70%;
+    }
+}

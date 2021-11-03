@@ -16,19 +16,48 @@
             <h3 class="chat-room">chat room</h3>
             <input type="text" placeholder="search globally" class="search-global" >
             <div class="urls">
-                <span id="logOut" style="cursor: pointer;">log-out</span>
-                <span id="aboutMe" style="cursor: pointer;"><%= user.name %></span>
+                <div class="burger">
+                    <div class="bg1"></div>
+                    <div class="bg2"></div>
+                    <div class="bg3"></div>
+                </div>
+                <div class="url-content">
+                    <div id="aboutMe" style="cursor: pointer;">Profile</div>
+                    <div id="friendRequests" style="cursor: pointer;">requests
+                        <% if(user.friendRequests.length){ %> 
+                            <span class="noOfRequests"><%= user.friendRequests.length %></span>
+                        <% } %> 
+                    </div>
+                    <div id="logOut" style="cursor: pointer;">log-out</div>
+                </div>
             </div>
         </section>
-        <div id="serach-friends"></div>
+        <div id="serach-friends">
+            <!-- <p id=load-more-search-friends>load more</p> -->
+        </div>
         <div class="row">
-            <section id="friends-section">
+            <section id="friends-section" class="show-friends-area">
+                <% 
+                let friendsList = user.friends
+                friendsList.sort(function(a,b){
+                    if(a.unReadMessages>b.unReadMessages)
+                        return -1
+                    else
+                        return 1
+                })
+                %> 
                 <% for(let i=0;i<user.friends.length;i++){ const wid=user.friends[i].id.id;const name=user.friends[i].id.name%>
                 <div class="row friend-chat" style="height: 40px; padding-top: 5px; cursor: pointer;" data-wid="<%= wid %>" data-wname="<%= name %>">
                     <!-- <% console.log(user.friends[i].id) %>  -->
                     <img src="../imgs/<%= user.friends[i].id.photo %>" alt="<%= name %> " data-wid="<%= wid %>" data-wname="<%= name %>">
                     <div style="align-self: center; margin-left:auto;margin-right:auto;">
-                        <span data-wid="<%= wid %>" data-wname="<%= name %>"><%= user.friends[i].id.name %> </span>
+                        <span data-wid="<%= wid %>" data-wname="<%= name %>"><%= user.friends[i].id.name %><span id="unreadMsgs" class="noOfUnreadMessages<%= wid %>" data-wid="<%= wid %>" data-wname="<%= name %>">
+                            <% const emptymsg = "";if(user.friends[i].unReadMessages) { %>
+                                <%= user.friends[i].unReadMessages %>
+                            <% }else{ %>
+                                <%= emptymsg %>
+                            <% } %>   
+                        </span></span>
                     </div>
                 </div>
                 <% } %> 
@@ -36,11 +65,14 @@
             <section id="message-section-hider">
                 <div style="text-align: center; height: 40%;padding-top: 50%;">hello user<br><div>pls go and select your friend to start chat</div></div>
             </section>
-            <section id="message-section" style="display: none;">
-
+            <section id="message-section" class="hide-conversation">
+                <div class="loading-bar" >
+                    <div class="loading" style="--width:10"></div>
+                </div>
                 <section id="friend-name-section">
+                    <h4 class="back-pointer">&#8592</h4>
                     <h4 id="your-friend">your-friend</h4>
-                   <a href="#">more</a>
+                   <span class="get-more-about-friend" style="cursor: pointer; padding-right: 5px;">more</span>
                 </section>
                 <a id="get-more" style="text-align: center; display: block; cursor: pointer;">load more</a>
                 <section id="main-message-section">

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend requests</title>
+    <link rel="stylesheet" href="../styles/aboutFriends.css">
+</head>
+<body>
+    <div>
+        <a href="/">Go home</a>
+        <% users.forEach(element => { %>
+            <section class="row userDetails" >
+                <div class="image-div">
+                    <img src="<%= element.id.photo %>" alt="<%= element.id.name %>">
+                </div>
+                <div class="content-div">
+                    <h3>Name: <%= element.id.name %> </h3>
+                    <h3>Date of birth : <%= element.id.DateOfBirth %> </h3>
+                    <h3>About</h3>
+                    <p><%= element.id.aboutMe %></p>
+                    <button class="accept-friend-request" data-thisId="<%= element.id._id %>">accept request</button>
+                </div>
+            </section>
+        <% }); %> 
+    </div>
+    <script src="../acceptingPage.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@ class APIFeatures{
         const excludeFields = ["page","sort","limit","fields"];
         excludeFields.forEach(ele=>{delete quaryObject[ele]});
         if(quaryObject.regex){
-            this.query=this.query.find({name:{$regex:new RegExp(`${quaryObject.regex}`),$options: 'i'}});
+            this.query=this.query.find({name:{$regex:new RegExp(`${quaryObject.regex}`),$options: 'i'},accountCreatedAt:{$lt:quaryObject.timeOfSearchStart}});
             return this
         }
         //advance filtering

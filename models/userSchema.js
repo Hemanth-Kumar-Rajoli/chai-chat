@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
     DateOfBirth:Date,
     accountCreatedAt:{
         type:Date,
-        default:Date.now()
+        default:Date.now
     },
     aboutMe:{
         type:String,
@@ -36,6 +36,10 @@ const userSchema = mongoose.Schema({
             id:{
                 type:mongoose.Schema.ObjectId,
                 ref:'user',
+            },
+            unReadMessages:{
+                type:Number,
+                default:0
             }
         }
     ],
@@ -44,6 +48,10 @@ const userSchema = mongoose.Schema({
             id:{
                 type:mongoose.Schema.ObjectId,
                 ref:'user',
+            },
+            noOfUnreadMessages:{
+                type:Number,
+                default:0
             }
         }
     ],

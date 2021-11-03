@@ -4,22 +4,38 @@
         <div class="form">
             <h3><%= file %> </h3>
             <div>
-                <div class="div-element-email">
-                    <input type="text" name="email" id="email" required>
-                    <label for="email">email</label>
-                    <div class="for-after"></div>
-                </div>
-                <% if(file==='log in' ||file==='sign up'){ %>
-                    <div class="div-element-password">
-                        <input type="password" name="password" id="password" required>
-                        <label for="password" id="">password</label>
+                <% if(file==='sign up'){ %>
+                    <div class="div-element-name">
+                        <input type="text" name="name" id="name" required>
+                        <label for="name">Name</label>
                         <div class="for-after"></div>
                     </div>
                 <% } %> 
-                <% if(file==='sign up'){ %>
+                <% if(file!='reset password'){ %>
+                    <div class="div-element-email">
+                        <input type="text" name="email" id="email" required>
+                        <label for="email">Email</label>
+                        <div class="for-after"></div>
+                    </div>
+                <% } %> 
+                <% if(file==='reset password'){ %>
+                    <div class="div-element-password">
+                        <input type="password" name="password" id="password" required>
+                        <label for="password" id="">New password</label>
+                        <div class="for-after"></div>
+                    </div>
+                <% } %> 
+                <% if(file==='log in' ||file==='sign up'){ %>
+                    <div class="div-element-password">
+                        <input type="password" name="password" id="password" required>
+                        <label for="password" id="">Password</label>
+                        <div class="for-after"></div>
+                    </div>
+                <% } %> 
+                <% if(file==='sign up' || file==='reset password'){ %>
                     <div class="div-element-ConformPassword">
                         <input type="password" name="password" id="conform-password" required>
-                        <label for="conform-password" id="">conform password</label>
+                        <label for="conform-password" id="">Conform password</label>
                         <div class="for-after"></div>
                     </div>
                 <% } %> 
@@ -27,7 +43,13 @@
                     <% if(file==='log in' ||file==='sign up'){ %>
                         <button name="<%= file %>" id="entrence"><%= file %></button>
                     <% } else { %>
-                            <button name="forgot password" id="entrence">submit</button>
+                            <% if(file==='forgot password'){ %>
+                                <button name="forgot password" id="entrence">submit</button>
+                                <div id='forgot-password-message' style="color: rgb(8, 8, 8);"></div>
+                            <% }else{ %> 
+                                <button name="reset password" id="entrence">submit</button>
+                                <div id='reset-password-message' style="color: rgb(248, 24, 24);"></div>
+                            <% } %> 
                             <div>
                                 <a href="/login">log-in</a>
                                 <span>-</span>
@@ -44,10 +66,12 @@
                         </div>
                     <% } %> 
                     <% if(file==='sign up'){ %>
+                        <div id='signup-message' style="color: red;"></div>
                         <div>
                             <a href="/login">Already had an account?</a>
                         </div>
                     <% } %> 
+
                 </div>
             </div>
         </div>

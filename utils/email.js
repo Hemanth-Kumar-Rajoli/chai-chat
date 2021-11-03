@@ -10,9 +10,10 @@ const sendEmail = async(options)=>{
         }
     })
     const mailOptions={
-        from:"chat-window <hemanth.io>",
+        from:"Chat-Room <Hemanth Kumar Rajoli>",
         to:options.email,
         subject:options.subject,
+        html:options.html,
         text:options.message
     }
     await traspoter.sendMail(mailOptions);

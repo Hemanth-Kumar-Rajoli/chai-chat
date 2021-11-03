@@ -135,12 +135,14 @@ exports.updatePassword = checkAsync(async(req,res,next)=>{
         message:'updated your password'
     })
 })
+
 exports.sendFriendRequest = checkAsync(async(req,res,next)=>{
     const {email} = req.body;
     let raisedErr=false
     if(!email)
         return next(new AppError({message:"pls send email of your friend"},400));
     const frndAccount = await User.findOne({email})
+    if(frndAccount.id===req.user.id)
     try{
         const requests = frndAccount.friendRequests
         requests.forEach(ele=>{
@@ -174,11 +176,64 @@ exports.sendFriendRequest = checkAsync(async(req,res,next)=>{
         status:'success',
         message:'request send successfully'
     })
+});
+exports.sendFriendRequestById = checkAsync(async(req,res,next)=>{
+    const userId  = req.body.id;
+    console.log(userId);
+    if(userId===req.user.id)
+        return next(new AppError({message:'not valid'},400))
+    let raisedErr=false;
+    try{
+        const fredUser = await User.findById(userId);
+        if(!fredUser){
+            return next(new AppError({message:"not valid id"},400));
+        }
+        const requests = fredUser.friendRequests
+        requests.forEach(ele=>{
+            if(ele.id==req.user.id){
+                raisedErr=true
+                return next(new AppError({message:"request already sended"},400));
+            }
+        })
+        if(!raisedErr){
+            const friends = frndUser.friends
+            friends.forEach(ele=>{
+                if(ele.id==req.user.id){
+                    raisedErr=true
+                    return next(new AppError({message:"you both are already friends"},400)); 
+                }          
+            })
+        }
+    }catch(err){
+
+    }
+    if(raisedErr)
+        return 0;
+        const frndUser = await User.findByIdAndUpdate(userId,{$push:{
+        friendRequests:{
+            id:req.user.id,
+        }
+    }});
+
+    res.status(200).json({
+        status:'success',
+        message:'request send successfully'
+    })
 })
 exports.acceptFriendRequest = checkAsync(async(req,res,next)=>{
-    const {email} = req.body;
+    let email;
+    if(req.body.id){
+        const frndUser = await User.findById(req.body.id)
+        if(!frndUser)
+            return next(new AppError({message:"in valid"},400));
+        email=frndUser.email;
+        
+    }
+    else{
+        email = req.body.email;
+    }
     let raiseSuc = false
-    if(!email)
+    if(!req.body.id || !email)
         return next(new AppError({message:"pls send email of your friend"},400));
     const allRequest = req.user.friendRequests;
     let frndId;

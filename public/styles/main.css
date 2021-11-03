@@ -25,6 +25,7 @@ body{
     margin-left: 15%;
     margin-right: 20%;
     top: 14%;
+    z-index: 1;
     /* height: 50px; */
     max-height: 200px;
     overflow-y: scroll;
@@ -66,7 +67,7 @@ a{
     overflow-y: scroll;
 }
 #friends-section>div:hover{
-    color: rgb(71, 69, 69);
+    color: rgb(27, 24, 24);
 }
 img{
     border-radius: 50px;
@@ -79,8 +80,11 @@ img{
     border-radius: 50px;
 }
 #friends-section::-webkit-scrollbar-thumb:hover,#message-section::-webkit-scrollbar-thumb:hover,#serach-friends::-webkit-scrollbar-thumb:hover{
-    background-color: rgb(216, 221, 220);
+    background-color: rgb(100, 104, 103);
 
+}
+#message-section{
+    display: block;
 }
 #message-section,#message-section-hider{
     margin-top: 10px;
@@ -103,6 +107,10 @@ img{
     top: 10px;
     background-color: white;
 }
+.main-search-list {
+    position: sticky;
+    z-index: 5;
+}
 h4#your-friend{
     margin: 3px 0 0 5px;
     align-self: center;
@@ -119,5 +127,141 @@ h4#your-friend{
     height: 20px;
     border-radius: 7px;
 }
+#logOut,#aboutMe,#friendRequests{
+    margin: 2px;
+    display: inline;
+}
+.burger{
+    display: none;
+}
+@media screen and (max-width:1100px) {
+    .url-content{
+        display: none;
+    }
+    .burger{
+        position: relative;
+        z-index: 3;
+        cursor: pointer;
+        display: block;
+        margin-left: 80% ;
+        margin-top: 12px;
+        /* width: 30px;
+        height: 10px; */
+        /* background-color: white; */
+    }
+    .bg1,.bg2,.bg3{
+        width: 20px;
+        height: 2px;
+        display: block;
+        margin-bottom: 2px;
+        background-color: white;
+        transition: transform 0.4s ease-in-out;
+    }
+    
+}
 
+.clicked>.burger>.bg1{
+    margin-bottom: -2px;
+    transform: rotate(-45deg);
+}
+.clicked>.burger>.bg2{
+    display: none;
+}
+.clicked>.burger>.bg3{
+    transform: rotate(45deg);
+}
+.clicked>.url-content{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin-left: 5px;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    background-color: rgba(207, 206, 207, 0.507);
+    position: relative;
+    top: -18px;
+    display: block;
+}
+.clicked>.url-content>div#logOut,.clicked>.url-content>div#aboutMe{
+    z-index: 2;
+    display: block;
+}
+.back-pointer{
+    align-self: center; 
+    padding: 3px; 
+    color: rgb(20, 20, 20); 
+    cursor: pointer; 
+    font-size: large; 
+    display: none;
+}
+@media screen and (max-width:480px) {
+    .burger{
+        left: -15px;
+    }
+    #friends-section{
+        height: 80vh;
+    }
+    #message-section-hider{
+        display: none;
+    }
+    #friends-section{
+        width: 100%;
+    }
+    .show-conversation#message-section{
+        display: block;
+        width: 100%;
+    }
+    #message-section{
+        height: 85vh;
+    }
+    .hide-friends-area{
+        display: none;
+    }
+    #message-section-footer{
+        width: 100%;
+        display: flex;
+    }
+    #message-section-footer>input{
+        width: 70%;
+    }
+    .back-pointer{
+        display: block;
+    }
+
+}
+.hide-conversation#message-section{
+    display: none;
+    width: 0%;
+}
+.show-friends-area{
+    display: block;
+    width: 100%;
+}
+.noOfRequests{
+    border-radius: 50px;
+    width: 20px;
+    height: 25px;
+    background-color: rgb(180, 253, 106);
+    position: relative;
+    display: inline-block;
+    left: -4px;
+    text-align: center;
+}
+#unreadMsgs{
+    background-color: rgb(36, 221, 36);
+    border-radius: 50px;
+    position: relative;
+    left: -1px;
+}
+.loading-bar{
+    position: absolute;
+    /* top:20px; */
+    width: 0;
+    height: 2px;
+    background-color: blue;
+}
+.loading{
+    width: calc(var(--width,0) * 1%);
+    background-color: red;
+}
 

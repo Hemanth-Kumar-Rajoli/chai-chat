@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Friend</title>
+    <link rel="stylesheet" href="../styles/aboutFriends.css">
+</head>
+<body>
+    <section class="row userDetails" data-thisId="<%= user.id %>">
+        <div class="image-div">
+            <img src="<%= user.photo %>" alt="<%= user.name %>">
+        </div>
+        <div class="content-div">
+            <h3>Name: <%= user.name %> </h3>
+            <% 
+                let dob=new Date(user.DateOfBirth)
+                let date = dob.getDate();
+                if(date<10)
+                    date="0"+date
+                let month = (dob.getMonth()+1);
+                if(month<10)
+                    month="0"+month
+                const year = dob.getFullYear();
+            %> 
+            <h3>Date of birth : <%= `${date}/${month}/${year}` %> </h3>
+            <h3>About</h3>
+            <p><%= user.aboutMe %></p>
+            <% let entered=false %> 
+            <% adminUser.friendRequests.forEach(element => {
+                if(element.id._id==user.id){ %>
+                    <button class="accept-request">accept request</button>
+                <% entered=true; return}
+            }); %>   
+            <% 
+                if(!entered){
+                adminUser.friends.forEach(element => {
+                    if(element.id._id==user.id){ %>
+                        <button class="already-friend">Already friends</button>
+                    <% entered=true; return}
+                })}; %> 
+            <%  
+                if(!entered){
+                user.friendRequests.forEach(element => {
+                    if(element.id._id==adminUser.id){ %>
+                        <button class="request-sended">request sended</button>
+                    <% entered=true; return}
+
+            })}; %> 
+            <% if(!entered) { %>
+                <button class="send-request">send request</button>
+            <% } %>
+            <button class="home">Home</button>
+            
+        </div>
+        <div>
+
+        </div>
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../aboutFriends.js"></script>
+</body>
+</html>

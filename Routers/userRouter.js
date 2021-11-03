@@ -14,6 +14,7 @@ router.route('/logout').get(authController.logOut);
 router.route('/update-password').patch(userController.updatePassword)
 // router.route('/deletemyAccount')
 router.route('/sendFriendRequest').post(userController.sendFriendRequest)
+router.route('/sendFriendRequestById').post(userController.sendFriendRequestById)
 router.route('/acceptFriendRequest').post(userController.acceptFriendRequest)
 router.route('/updateMySelf').patch(authController.protect,userController.uplodePhoto,userController.resizeUserPhoto,userController.updateMySelf)
 router

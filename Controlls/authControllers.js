@@ -5,6 +5,7 @@ const APIFeatures = require('./../utils/apiFeatures');
 const checkAsync = require('../utils/erroHandilings/checkAsync');
 const bcrypt = require('bcrypt');
 const sendEmail = require('../utils/email');
+const ejs = require('ejs')
 const crypto = require('crypto');
 const { promisify } = require('util');
 const sendJwt = (id)=>{
@@ -65,10 +66,12 @@ exports.forgotPassword = checkAsync(async(req,res,next)=>{
     const url=`${req.protocol}://${req.get('host')}/api/v1/users/reset-password/${resetToken}`
     const message=`forgot password? send post request to \n${url}\n if not pls ignore this mail`
     try{
+        const html = await ejs.renderFile(`${__dirname}/../views/emailTemplete.ejs`,{forgotPassUrl:url,webUrl:`${req.protocol}://${req.get('host')}/reset-password/${resetToken}`,host:`${req.protocol}://${req.get('host')}`})
         await sendEmail({
             message,
             email:user.email,
-            subject:`This url is valid only for ${process.env.PASSWORD_RESET_TOKEN_EXPIRESIN} only`
+            subject:`This url is valid only for ${process.env.PASSWORD_RESET_TOKEN_EXPIRESIN} miniutes only`,
+            html
         });
         user.passwordresetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
         user.passwordresetTokenExpiresIn=Date.now()+process.env.PASSWORD_RESET_TOKEN_EXPIRESIN*60*1000;
@@ -127,7 +130,7 @@ exports.protect = checkAsync(async(req,res,next)=>{
         select:'name email photo'
     }).populate({
         path:'friendRequests.id',
-        select:'name email photo'
+        select:'name email photo aboutMe DateOfBirth'
     });
     if(!user)
         return next(new AppError({message:"you are loged out"},401));
