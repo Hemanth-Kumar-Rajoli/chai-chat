@@ -12,9 +12,9 @@ const ejs = require('ejs');
 const sendresponse='dont'
 exports.login = async(req,res,next)=>{
     try{
-        console.log(req.body);
+        // console.log(req.body);
         const zxv = await authControllers.login(req,res,next,sendresponse);
-        console.log(res.statusCode);
+        // console.log(res.statusCode);
         if(res.statusCode===200)
             res.render('main');
         else    

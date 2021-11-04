@@ -29,7 +29,7 @@ catch(err){
 const buttonForAcceptRequest = document.querySelector('.accept-request');
 try{
     buttonForAcceptRequest.addEventListener('click',async()=>{
-        console.log('clicked');
+        // console.log('clicked');
         const url ='/api/v1/users/acceptFriendRequest'
         try{
             if(buttonForAcceptRequest.textContent!="accepted")
@@ -37,14 +37,14 @@ try{
             const response = await axios.post(url,{
                 id:document.querySelector('.userDetails').dataset.thisid
             })
-            console.log(response);
+            // console.log(response);
             if(response.data.status==="success"){
                 buttonForAcceptRequest.textContent="accepted"
             }
         }catch(err){
             if(buttonForAcceptRequest.textContent!="accepted")
                 buttonForAcceptRequest.textContent="accept request"
-            console.log(err);
+            // console.log(err);
         }
     })
 }catch(err){

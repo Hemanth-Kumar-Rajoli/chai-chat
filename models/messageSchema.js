@@ -32,7 +32,5 @@ messageSchema.pre(/^find/,function(){
 })
 
 const Message = mongoose.model('message',messageSchema);
-Message.watch().on('change',data=>{
-    console.log(data);
-})
+
 module.exports = Message;

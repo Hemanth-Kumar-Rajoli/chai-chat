@@ -48,7 +48,6 @@
                 %> 
                 <% for(let i=0;i<user.friends.length;i++){ const wid=user.friends[i].id.id;const name=user.friends[i].id.name%>
                 <div class="row friend-chat" style="height: 40px; padding-top: 5px; cursor: pointer;" data-wid="<%= wid %>" data-wname="<%= name %>">
-                    <!-- <% console.log(user.friends[i].id) %>  -->
                     <img src="../imgs/<%= user.friends[i].id.photo %>" alt="<%= name %> " data-wid="<%= wid %>" data-wname="<%= name %>">
                     <div style="align-self: center; margin-left:auto;margin-right:auto;">
                         <span data-wid="<%= wid %>" data-wname="<%= name %>"><%= user.friends[i].id.name %><span id="unreadMsgs" class="noOfUnreadMessages<%= wid %>" data-wid="<%= wid %>" data-wname="<%= name %>">

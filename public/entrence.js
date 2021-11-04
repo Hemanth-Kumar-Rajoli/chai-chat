@@ -7,7 +7,7 @@ const doc = document.querySelectorAll('input');
 // }
 // axios.post()
 function buttonClicked(){
-    console.log(this.name);
+    // console.log(this.name);
     const name=this.name
     if(name==='log in'){
         document.querySelector('button#entrence').textContent="logging in..."
@@ -36,8 +36,8 @@ const resetPassswordFun = async(obj)=>{
     }
     try{
         const response= await axios.patch(url,body);
-        console.log(response.data.status);
-        console.log(typeof(response.data.status));
+        // console.log(response.data.status);
+        // console.log(typeof(response.data.status));
         if(response.data.status==='success'){
             const replaceUrl = '/login'
             window.location.replace(replaceUrl)
@@ -47,7 +47,7 @@ const resetPassswordFun = async(obj)=>{
         document.getElementById('reset-password-message').textContent='check password and password conform are same'
         document.querySelector('button').textContent="Submit"
     }
-    console.log(token);
+    // console.log(token);
 }
 const forgotPasswordFun = async(obj)=>{
     const url = '/api/v1/users/forgot-password';
@@ -57,8 +57,8 @@ const forgotPasswordFun = async(obj)=>{
     }
     try{
         const response= await axios.post(url,body);
-        console.log(response.data.status);
-        console.log(typeof(response.data.status));
+        // console.log(response.data.status);
+        // console.log(typeof(response.data.status));
         if(response.data.status==='success'){
             document.getElementById('forgot-password-message').style.color='black'
             document.getElementById('forgot-password-message').textContent='verification link sended to your email, please check your mail'
@@ -83,8 +83,8 @@ const signupFun = async(obj)=>{
     }
     try{
         const response= await axios.post(url,body);
-        console.log(response.data.status);
-        console.log(typeof(response.data.status));
+        // console.log(response.data.status);
+        // console.log(typeof(response.data.status));
         if(response.data.status==='success'){
             const replaceUrl = '/'
             window.location.replace(replaceUrl)
@@ -96,7 +96,7 @@ const signupFun = async(obj)=>{
     }
 }
 const loginFun=async(obj)=>{
-    console.log(doc);
+    // console.log(doc);
     const url = '/api/v1/users/login';
     // const url= 'http://localhost:3000/loginRequest'
     const body={
@@ -105,8 +105,8 @@ const loginFun=async(obj)=>{
     }
     try{
         const response= await axios.post(url,body);
-        console.log(response.data.status);
-        console.log(typeof(response.data.status));
+        // console.log(response.data.status);
+        // console.log(typeof(response.data.status));
         if(response.data.status==='success'){
             const replaceUrl = '/'
             window.location.replace(replaceUrl)

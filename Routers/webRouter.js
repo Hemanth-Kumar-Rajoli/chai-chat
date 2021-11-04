@@ -6,7 +6,7 @@ const app =express();
 const router = express.Router()
 
 
-console.log(`${__dirname}/../views`);
+// console.log(`${__dirname}/../views`);
 router.route('/login').get((req,res)=>{
     res.render('base',{file:'log in'})
 })
@@ -25,7 +25,7 @@ router.route('/about-me').get(authControllers.protect,(req,res)=>{
     res.render('profile',{user:req.user})
 })
 router.route('/get-more/:fid').get(authControllers.protect,async(req,res)=>{
-    console.log('enterred');
+    // console.log('enterred');
     try{
         const frdUser = await User.findById(req.params.fid);
         res.render('aboutFriends',{user:frdUser,adminUser:req.user})

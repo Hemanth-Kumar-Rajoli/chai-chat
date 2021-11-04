@@ -11,7 +11,7 @@ async function updateUnreadMessage(mainUser,senderUser,incType){
     updatingUser.friends.forEach(ele => {
         if(ele.id.equals(senderUser)){
             if(incType){
-                console.log(incType);
+                // console.log(incType);
                 if(!ele.unReadMessages)
                     ele.unReadMessages=1
                 else{
@@ -28,7 +28,7 @@ async function updateUnreadMessage(mainUser,senderUser,incType){
 
 }
 io.on('connection',socket=>{
-    console.log(socket.id);
+    // console.log(socket.id);
 
     socket.on('send-message',async message=>{
         Message.create({message:message.message,sender:message.sender_resiver.sender,resiver:message.sender_resiver.resiver})
@@ -49,9 +49,9 @@ io.on('connection',socket=>{
     // socket.on('countIncrement',(message)=>{
     //     User.findOne({_id:message.sender_resiver.resiver})
     // })
-    socket.on('disconnect',()=>{
-        console.log("------------",socket.id);
-    })
+    // socket.on('disconnect',()=>{
+    //     console.log("------------",socket.id);
+    // })
 })
 // io.on('disconnect',(socket)=>{
 
@@ -71,8 +71,8 @@ are removed form new version from v:6.6.0 so pls ignore above options they set t
  */
 mongoose.connect(DB).then(con=>{
     // console.log(con.connections);
-    console.log("your are now connected to the server");
-}).catch(err=>console.log(err))
+    console.log("your are now connected to the database");
+}).catch(err=>console.log("mongo error"))
 
 server.listen(process.env.PORT || 3000,()=>{
     console.log(`app is running at port ${process.env.PORT}`);

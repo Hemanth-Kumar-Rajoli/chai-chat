@@ -12,8 +12,9 @@ let send_message_details  = {
     sender:document.querySelector('#present-user').dataset.userid
 }
 let resiver_event_name;//hemanth resiving message form jayanth
+let previous_resiver_event_name;
 document.querySelector('#aboutMe').addEventListener('click',async()=>{
-    console.log('yes');
+    // console.log('yes');
     try{
         // const x = await axios.get('/about-me');
         window.location.replace('/about-me')
@@ -22,7 +23,7 @@ document.querySelector('#aboutMe').addEventListener('click',async()=>{
     }
 })
 document.querySelector('#logOut').addEventListener('click',async()=>{
-    console.log('yes in logout');
+    // console.log('yes in logout');
     try{
         const x = await axios.get('/api/v1/users/logout');
         window.location.replace('/login')
@@ -41,12 +42,12 @@ document.querySelector('.back-pointer').addEventListener('click',()=>{
 const oneOfFriend = document.querySelectorAll('.friend-chat')
 socket.on(document.querySelector('#present-user').dataset.userid,(message)=>{
     if(message.sender_resiver.sender===presentSelectedUser){
-        console.log(presentSelectedUser);
-        console.log('message sended to the selected user');
+        // console.log(presentSelectedUser);
+        // console.log('message sended to the selected user');
         socket.emit('message-resived',message);
     }
     else{
-        console.log('im unselected user ok aaa!');
+        // console.log('im unselected user ok aaa!');
         // socket.emit('countIncrement',message)
         const incremantMessage = document.querySelector(`.noOfUnreadMessages${message.sender_resiver.sender}`);
         if(incremantMessage.textContent==""||incremantMessage.textContent==" ")
@@ -58,11 +59,11 @@ socket.on(document.querySelector('#present-user').dataset.userid,(message)=>{
                 incremantMessage.textContent=parseInt(incremantMessage.textContent)+1;
         }
     }
-    console.log(message);
+    // console.log(message);
 })
 oneOfFriend.forEach(ele=>{
     //here no of unread messages are going to the "friend that are to the main user"
-    console.log(ele);
+    // console.log(ele);
     ele.addEventListener('click',function(event){
         document.querySelector(`.noOfUnreadMessages${event.target.dataset.wid}`).textContent='';
         presentSelectedUser=event.target.dataset.wid;
@@ -75,12 +76,14 @@ oneOfFriend.forEach(ele=>{
         document.querySelector('#your-friend').textContent=event.target.dataset.wname
         document.querySelector('.get-more-about-friend').dataset.wid=event.target.dataset.wid;
         // sender_event_name+=event.target.dataset.wid;
+        socket.off(previous_resiver_event_name);
         resiver_event_name=document.querySelector('#present-user').dataset.userid+event.target.dataset.wid
         send_message_details.resiver=event.target.dataset.wid
         getAllMessages(document.querySelector('#present-user').dataset.userid,event.target.dataset.wid);
         socket.emit('open-message-resived',{message:"",sender_resiver:send_message_details})
         socket.off(resiver_event_name);
         socket.on(resiver_event_name,message=>{
+            previous_resiver_event_name=resiver_event_name;
             socket.emit('message-resived',message)
             const doc = document.querySelector('#message-box');
             let tag = document.createElement("p");
@@ -111,13 +114,13 @@ async function getMessagesFromServer(sederQuery,resiverQuery){
         const senderResponse =await axios.get(sederQuery);
         if(senderResponse.data.result>0)
             lastRecordOfSender = senderResponse.data.data.messages[senderResponse.data.result-1].createdAt
-        console.log(lastRecordOfSender);
+        // console.log(lastRecordOfSender);
         const resiverResponse =await axios.get(resiverQuery);
         // console.log(senderResponse);
         // console.log(resiverResponse);
         if(resiverResponse.data.result>0)
             lastRecordOfResiver = resiverResponse.data.data.messages[resiverResponse.data.result-1].createdAt
-        console.log(lastRecordOfResiver);
+        // console.log(lastRecordOfResiver);
 
         // if(senderResponse.data.length>0 && resiverResponse.data.length>0)
             let msgs = (senderResponse.data.data.messages).concat(resiverResponse.data.data.messages)
@@ -158,7 +161,7 @@ async function getAllMessages(sender,resiver){
         })
         let msgBody=document.querySelector('#message-section')
         msgBody.scrollTop=msgBody.scrollHeight-msgBody.clientHeight
-        console.log('response resived');
+        // console.log('response resived');
         document.querySelector('#input-message-placeholder').value=""
         document.querySelector('#send-input-message').style.display='inline-block'
     }catch(err){
@@ -169,7 +172,7 @@ async function getAllMessages(sender,resiver){
 }
 document.querySelector('#send-input-message').addEventListener('click',()=>{
     const msg = document.querySelector('#input-message-placeholder');
-    console.log('yes');
+    // console.log('yes');
     if(msg.value.length>0){
         const doc = document.querySelector('#message-box');
         let tag = document.createElement("p");
@@ -208,7 +211,7 @@ document.querySelector('#get-more').addEventListener('click',async()=>{
 })
 
 async function enlargeTheFriend(event){
-    console.log(event.target.dataset.thisId);
+    // console.log(event.target.dataset.thisId);
     try{
         window.location.replace(`/get-more/${event.target.dataset.thisId}`)
         // const response = await axios.get(`/get-more/${event.target.dataset.thisId}`)
@@ -265,7 +268,7 @@ searchFriends.addEventListener('keydown',()=>{
     }
 })
 searchFriends.addEventListener('focusout',(event)=>{
-    console.log('yes in out');
+    // console.log('yes in out');
     if(searchFriends.value.length===0){
         timeOfSearchStart=Date.now();
         searchFriends.value=""
@@ -279,12 +282,12 @@ searchFriends.addEventListener('keyup',async(event)=>{
         if(searchText.length===1){
             timeOfSearchStart=Date.now();
         }
-        console.log(searchText);
+        // console.log(searchText);
         try{
             const div = document.createElement('div');
             div.classList.add('main-search-list');
             // div.style.zIndex=1
-            console.log(timeOfSearchStart);
+            // console.log(timeOfSearchStart);
             // while(!timeOfSearchStart)
             const users = await axios.get(`/api/v1/users?regex=${searchText}&timeOfSearchStart=${timeOfSearchStart}&page=1&limit=5`);
             // const okThis = users.data.data
@@ -307,8 +310,8 @@ searchFriends.addEventListener('keyup',async(event)=>{
 })
 async function getMoreeFrinedsSearch(){
     document.querySelector('.load-more-search-friends').remove();
-    console.log("number of searches happpend are"+numberOfSearchesHappend);
-    console.log('yes it is');
+    // console.log("number of searches happpend are"+numberOfSearchesHappend);
+    // console.log('yes it is');
     const searchText = searchFriends.value;
     numberOfSearchesHappend++;
     const users = await axios.get(`/api/v1/users?regex=${searchText}&timeOfSearchStart=${timeOfSearchStart}&page=${numberOfSearchesHappend}&limit=5`);

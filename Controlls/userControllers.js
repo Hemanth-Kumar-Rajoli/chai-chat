@@ -81,7 +81,7 @@ const updateOptions = (req)=>{
     if(req.file){
         query.photo=`../imgs/${req.file.filename}`
     }
-    console.log(query);
+    // console.log(query);
     // if(reqB.)
     return query;
 
@@ -179,7 +179,7 @@ exports.sendFriendRequest = checkAsync(async(req,res,next)=>{
 });
 exports.sendFriendRequestById = checkAsync(async(req,res,next)=>{
     const userId  = req.body.id;
-    console.log(userId);
+    // console.log(userId);
     if(userId===req.user.id)
         return next(new AppError({message:'not valid'},400))
     let raisedErr=false;

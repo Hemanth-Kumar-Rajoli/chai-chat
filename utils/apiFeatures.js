@@ -24,7 +24,7 @@ class APIFeatures{
         //     this.query=this.query.find(JSON.parse({name:"hemanth"}));
         //     return this
         // }
-        console.log(JSON.parse(querystring));
+        // console.log(JSON.parse(querystring));
         this.query=this.query.find(JSON.parse(querystring));
         // let query =this.query.find(JSON.parse(querystr));
         return this;
