@@ -74,6 +74,13 @@ mongoose.connect(DB).then(con=>{
     console.log("your are now connected to the database");
 }).catch(err=>console.log("mongo error"))
 
-server.listen(process.env.PORT || 3000,()=>{
+const appServer = server.listen(process.env.PORT || 3000,()=>{
     console.log(`app is running at port ${process.env.PORT}`);
+})
+
+process.on('SIGTERM',()=>{
+    console.log("SIGTERM is raised shutting down gracefully");
+    appServer.close(()=>{
+        console.log('process terminated!');
+    })
 })

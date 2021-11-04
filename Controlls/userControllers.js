@@ -129,7 +129,7 @@ exports.updatePassword = checkAsync(async(req,res,next)=>{
     req.user.passwordConform=passwordConform
     await req.user.save();
     const token=sendJwt(req.user._id);
-    setCookie(token,res,process.env.JWT_COOKIE_EXPIRE_TIME*24*60*60*1000)
+    setCookie(token,res,req,process.env.JWT_COOKIE_EXPIRE_TIME*24*60*60*1000)
     res.status(200).json({
         status:'success',
         message:'updated your password'

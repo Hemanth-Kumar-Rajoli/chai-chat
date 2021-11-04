@@ -251,6 +251,7 @@ h4#your-friend{
     background-color: rgb(36, 221, 36);
     border-radius: 50px;
     position: relative;
+    text-align: center;
     left: -1px;
 }
 .loading-bar{

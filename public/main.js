@@ -6,13 +6,14 @@ let lastRecordOfResiver;
 let timeOfSearchStart;
 let numberOfSearchesHappend=1;
 let presentSelectedUser;
+
 //const searchData={firstSearch:[]};
 // let sender_event_name = document.querySelector('#present-user').dataset.userid;
 let send_message_details  = {
     sender:document.querySelector('#present-user').dataset.userid
 }
 let resiver_event_name;//hemanth resiving message form jayanth
-let previous_resiver_event_name;
+let previous_resiver_event_name="";
 document.querySelector('#aboutMe').addEventListener('click',async()=>{
     // console.log('yes');
     try{

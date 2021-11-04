@@ -1,5 +1,6 @@
 const User = require('../models/userSchema');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 const AppError = require("../utils/erroHandilings/appErrorController");
 const APIFeatures = require('./../utils/apiFeatures');
 const checkAsync = require('../utils/erroHandilings/checkAsync');
@@ -8,15 +9,16 @@ const sendEmail = require('../utils/email');
 const ejs = require('ejs')
 const crypto = require('crypto');
 const { promisify } = require('util');
+dotenv.config({path:"./config.env"});
 const sendJwt = (id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRES_IN});
 }
 exports.sendJwt=sendJwt;
-const setCookie = (token,res,expireTime)=>{
+const setCookie = (token,res,req,expireTime)=>{
     const cookieOptions = {
         expires:new Date(Date.now()+expireTime),
         httpOnly:true,
-        // secure:true
+        secure: req.secure || req.headers['x-forwarded-proto']==='https'
     }
     res.cookie('jwt',token,cookieOptions);
 }
@@ -25,7 +27,7 @@ exports.setCookie=setCookie;
 exports.signup = checkAsync(async(req,res,next)=>{
     const createdUser = await User.create(req.body);
     const token = sendJwt(createdUser._id);
-    setCookie(token,res,process.env.JWT_COOKIE_EXPIRE_TIME*24*60*60*1000);
+    setCookie(token,res,req,process.env.JWT_COOKIE_EXPIRE_TIME*24*60*60*1000);
     createdUser.password=undefined;
 
     res.status(201).json({
@@ -46,7 +48,7 @@ exports.login = checkAsync(async(req,res,next)=>{
     if(!(await bcrypt.compare(password,user.password)))
         return next(new AppError({message:"Incorrect password or email"},401))
     const token =sendJwt(user._id);
-    setCookie(token,res,process.env.JWT_COOKIE_EXPIRE_TIME*24*60*60*1000);
+    setCookie(token,res,req,process.env.JWT_COOKIE_EXPIRE_TIME*24*60*60*1000);
     res.status(200).json({
         status:'success',
         token,
@@ -109,7 +111,7 @@ exports.resetPasssword = checkAsync(async(req,res,next)=>{
     
 })
 exports.logOut = checkAsync(async(req,res,next)=>{
-    setCookie('hello',res,10);
+    setCookie('hello',res,req,10);
     res.status(200).json({
         status:'success',
         message:'you are successfully loged out'
