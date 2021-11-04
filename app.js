@@ -20,8 +20,8 @@ app.use(function(req, res, next) {
     res.setHeader( 'Content-Security-Policy', "script-src 'self' https://cdn.jsdelivr.net https://cdn.socket.io" ); 
     next(); 
 })
-if(process.env.NODE_ENV==='development')
-    app.use(morgan('dev'))
+// if(process.env.NODE_ENV==='development')
+//     app.use(morgan('dev'))
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
