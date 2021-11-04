@@ -87,6 +87,7 @@ exports.forgotPassword = checkAsync(async(req,res,next)=>{
             status:'fail',
             message:'something went wrong.Try again'
         })
+        console.log(err);
     }
 })
 exports.resetPasssword = checkAsync(async(req,res,next)=>{
@@ -120,8 +121,10 @@ exports.logOut = checkAsync(async(req,res,next)=>{
 exports.protect = checkAsync(async(req,res,next)=>{
     //1)check the token
     const jwtTokenCookie = req.headers.cookie;
-    if(!jwtTokenCookie)
-        return next(new AppError({message:"you are not loged in"},401));
+    if(!jwtTokenCookie){
+        return res.redirect('/login')
+        // return next(new AppError({message:"you are not loged in"},401));
+    }
     const jwtToken = jwtTokenCookie.slice(4,jwtTokenCookie.length)
     // console.log(jwtToken);
     //2)verify the token
