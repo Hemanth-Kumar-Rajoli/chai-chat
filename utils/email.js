@@ -10,7 +10,7 @@ const sendEmail = async(options)=>{
         }
     })
     const mailOptions={
-        from:"Chat-Room <Hemanth Kumar Rajoli>",
+        from:"chai-chat <Hemanth Kumar Rajoli>",
         to:options.email,
         subject:options.subject,
         html:options.html,
